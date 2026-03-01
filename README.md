@@ -26,32 +26,6 @@ All commands should be run through `uv run`:
 uv run --frozen --no-sync python <script.py>
 ```
 
-### Instantiating a model
-
-```python
-import torch
-from selective_rope.models.gla import GLAConfig, GLAForCausalLM
-
-config = GLAConfig(
-    hidden_size=512,
-    num_hidden_layers=4,
-    num_heads=4,
-    vocab_size=32000,
-    position_embedding={"type": "selective_rope", "phi_proj_rank": 32},
-)
-model = GLAForCausalLM(config).cuda()
-
-input_ids = torch.randint(0, config.vocab_size, (1, 128)).cuda()
-with torch.no_grad():
-    output = model(input_ids)
-print(output.logits.shape)  # (1, 128, 32000)
-
-# Autoregressive generation
-output_ids = model.generate(input_ids, max_new_tokens=20)
-```
-
-Set `position_embedding={"type": "nope"}` or `{"type": "rope"}` to use the baseline variants instead.
-
 ### Before scheduling experiments
 
 Before running any scheduling script (`schedule_lm.py`, `schedule_mad.py`, etc.), fill in the following placeholders that were left `null` for the public release:
@@ -98,27 +72,6 @@ uv run --frozen --no-sync python synthetic_tasks/mad/schedule_mad.py
 
 These follow the same Hydra + SLURM pattern. See `configs/copying/` and `configs/state_tracking/` for configurations.
 
-## Project Structure
-
-```
-src/selective_rope/
-├── modules/rotary.py          # SelectiveRoPE: input-dependent frequency selection
-├── ops/selective_rope.py      # Triton kernels (forward pass only)
-├── layers/
-│   ├── gla.py                 # Gated Linear Attention with SelectiveRoPE
-│   ├── gated_deltanet.py      # Gated DeltaNet (comparison architecture)
-│   └── attn.py                # Standard multi-head attention with RoPE
-└── models/                    # Full causal LM implementations (HuggingFace-compatible)
-    ├── gla/
-    ├── gated_deltanet/
-    └── transformer/
-
-configs/                       # Hydra configs organized by task
-evals/                         # Evaluation harness and benchmarks
-tests/                         # Unit tests
-synthetic_tasks/               # MAD, Zoology, copying, state tracking
-train_language_modeling.py      # Training entry point (launched by schedule_lm.py)
-```
 
 ## Citation
 
