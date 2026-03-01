@@ -1,0 +1,10 @@
+group: S3
+k: 128
+k_test: 512
+tagging: true
+train_size: 1.0
+curriculum: false
+strict_len: true
+max_len: null
+max_samples: null
+data_dir: ${hydra:runtime.cwd}/data/state_tracking

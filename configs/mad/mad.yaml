@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - model: gla
+  - trainer: trainer
+  - logger: logger
+  - cluster: capella
+
+hydra:
+  run:
+    dir: ${hydra.runtime.cwd}/logs/mad/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+log_base_path: ./logs
+log_to_csv: true
+log_to_wandb: false
+save_checkpoints: true
+data_path: ./data/mad
+
+benchmark:
+  gpus: 1
+  cpus: 16
+  num_trials_gpu: 1
+  num_cpus_trial: 2
+  ray_tmp_path: ./tmp/ray

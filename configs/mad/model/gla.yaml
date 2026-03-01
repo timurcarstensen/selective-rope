@@ -1,0 +1,23 @@
+defaults:
+  - position_embedding: nope
+
+layers: [gla, swiglu, gla, swiglu]
+backbone: language-model
+dim: 128
+max_length: 1280
+
+gla:
+  expand_v: 1
+  expand_k: 1
+  num_heads: 8
+  gate_fn: swish
+  layernorm_eps: 0.00001
+  gate_logit_normalizer: 16
+  gate_low_rank_dim: 16
+  mode: chunk
+  fuse_norm: false
+
+swiglu:
+  dim_inner: 512
+  drop_rate: 0
+  bias: false

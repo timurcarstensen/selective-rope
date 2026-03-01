@@ -1,0 +1,20 @@
+defaults:
+  - position_embedding: nope
+
+layers: [mh-attention, swiglu, mh-attention, swiglu]
+backbone: language-model
+dim: 128
+max_length: 1280
+
+mh-attention:
+  causal: true
+  n_heads: 16
+  rotary_emb_dim: 8
+  dropout: 0
+  window_size: [-1, -1]
+  use_flash_attn: true
+
+swiglu:
+  dim_inner: 512
+  drop_rate: 0
+  bias: false

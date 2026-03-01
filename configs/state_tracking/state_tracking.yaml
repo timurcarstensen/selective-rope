@@ -1,0 +1,33 @@
+# Base config for state_tracking experiment
+
+defaults:
+    - _self_
+    - trainer: trainer
+    - model: gla
+    - data: data
+    - logger: logger
+    - cluster: capella
+
+hydra:
+    run:
+        dir: ${hydra.runtime.cwd}/logs/state_tracking/${now:%Y-%m-%d}/${now:%H-%M-%S} # fix and use hydra.runtime.config_sources.path
+    mode: MULTIRUN
+    sweep:
+        dir: ${hydra.runtime.cwd}/logs/state_tracking/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    sweeper:
+        params:
+            logger.wandb_group: S2
+            data.group: S2
+            model.position_embedding.type: selective_rope, rope, nope
+            model.use_short_conv: true
+
+            model.position_embedding.temp_type: rope # choices: [rope, rfa]
+            model.position_embedding.temp_theta: 1.0 # > 1.0 for rope, (0, 1) for rfa - defaults, rope: 500000, rfa: 0.995
+            model.position_embedding.temp_max: 1.0 # max value for the temperature, usually 1.0
+            model.position_embedding.temp_grad: false # whether to train the temperature or not
+
+            model.position_embedding.use_gate: false
+            model.position_embedding.use_bias: true
+
+            trainer.seed: 0, 1, 2, 3, 4
+            trainer.lr: 5e-4 # grid: 1e-2, 1e-3, 5e-4, 1e-4

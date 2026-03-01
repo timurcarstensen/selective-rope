@@ -1,0 +1,8 @@
+use_wandb: true
+wandb_project: selective-rope-grad-norm
+wandb_entity: null
+wandb_group: null
+wandb_run_name: lr_${trainer.learning_rate}
+wandb_resume: auto
+print_progress: true
+log_per_module_grad_norms: true

@@ -1,0 +1,25 @@
+defaults:
+    - position_embedding: nope
+
+attn_mode: chunk
+bos_token_id: 1
+clamp_min: null
+eos_token_id: 2
+expand_k: 1
+expand_v: 1
+fuse_cross_entropy: false
+fuse_norm: true
+hidden_act: swish
+hidden_ratio: 4
+hidden_size: 384
+initializer_range: 0.02
+max_position_embeddings: 2048
+intermediate_size: null
+model_type: gla
+num_heads: 12
+num_hidden_layers: 1
+norm_eps: 1e-06
+tie_word_embeddings: false
+use_cache: true
+use_short_conv: false
+vocab_size: null

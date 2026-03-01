@@ -1,0 +1,5 @@
+wandb_resume: allow
+wandb_project: selective-rope-copying
+wandb_entity: null
+wandb_group: null
+run_name: ${model.model_type}-lr_${trainer.lr}-pe_${model.position_embedding.type}-${trainer.seed}

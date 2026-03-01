@@ -1,0 +1,17 @@
+batch_size: 128
+epochs: 200
+lr: 5e-4
+weight_decay: 0.0
+optimizer: adamw
+scheduler: cosine
+min_lr: 1e-6
+early_stop: true
+stop_patience: 20
+plateau_patience: 5
+plateau_factor: 0.9
+accelerator: cuda
+devices: 1
+precision: bf16
+seed: 12345
+num_data_workers: 0
+persistent_data_workers: true

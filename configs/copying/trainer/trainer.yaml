@@ -1,0 +1,39 @@
+model_name_or_path: null
+output_dir: null
+
+# runtime
+logging: true
+log_level: INFO
+log_every_steps: 10
+
+# training loop
+epochs: 1
+steps_budget: 5000
+batch_size: 256
+micro_batch_size: 256
+grad_accumulation_steps: 1
+
+# optimization
+lr: 5.0e-5
+weight_decay: 0.1
+beta1: 0.9
+beta2: 0.999
+op_eps: 1.0e-8
+gradient_clip: 1.0
+
+# scheduler
+scheduler: linear
+warmup_steps: 0.1
+
+# precision/compile
+mix_precision: true
+compile: true
+
+# dataloader
+num_workers: 4
+
+# seeds
+seed: 42
+
+# eval
+eval_batch_size: 256

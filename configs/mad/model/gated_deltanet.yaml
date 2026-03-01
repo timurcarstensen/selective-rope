@@ -1,0 +1,19 @@
+defaults:
+  - position_embedding: nope
+
+layers: [gated_deltanet, swiglu, gated_deltanet, swiglu]
+backbone: language-model
+dim: 128
+max_length: 1280
+
+gated_deltanet:
+  expand_v: 1
+  expand_k: 1
+  num_heads: 8
+  layernorm_eps: 0.00001
+  mode: chunk
+
+swiglu:
+  dim_inner: 512
+  drop_rate: 0
+  bias: false

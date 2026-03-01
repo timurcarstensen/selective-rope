@@ -1,0 +1,34 @@
+output_dir: null
+model_config_path: null
+
+# runtime
+logging: true
+log_level: INFO
+
+# training loop
+epochs: 100
+batch_size: 1024
+
+# optimization
+lr: 1e-3
+beta1: 0.9
+beta2: 0.999
+op_eps: 1.0e-8
+weight_decay: 0.000001
+gradient_clip: null
+use_scheduler: true
+
+# precision/compile
+mix_precision: true
+compile: false
+
+# dataloader
+num_workers: 4
+
+# seeds
+seed: 666
+
+# eval
+eval_batch_size: 128
+
+max_val_acc: 0.99

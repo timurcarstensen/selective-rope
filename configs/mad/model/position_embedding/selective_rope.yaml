@@ -1,0 +1,13 @@
+type: selective_rope
+skip_conv: false
+temp_type: rope
+temp_theta: 500000
+temp_max: 1.0
+temp_grad: false
+phi_proj_rank: 32
+phi_parametrization: low-rank
+conv_act: null
+use_gate: false
+use_bias: false
+gate_parametrization: standard
+gate_low_rank_dim: 16

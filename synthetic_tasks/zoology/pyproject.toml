@@ -1,0 +1,33 @@
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "zoology"
+version = "0.0.1"
+description = "Understand and test language model architectures on synthetic tasks."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Simran Arora" },
+  { name = "Sabri Eyuboglu" },
+]
+dependencies = [
+  "click",
+  "einops",
+  "flash-attn",
+  "matplotlib",
+  "numpy",
+  "pandas",
+  "pydantic",
+  "PyYAML",
+  "ray",
+  "rich",
+  "seaborn",
+  "torch",
+  "tqdm",
+  "wandb",
+]
+
+[tool.uv.build-backend]
+module-root = "src"

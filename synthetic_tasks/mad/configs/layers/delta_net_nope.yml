@@ -1,0 +1,7 @@
+dim: 128
+expand_v: 1
+expand_k: 1
+num_heads: 8
+layernorm_eps: 0.00001
+mode: 'chunk'
+position_embedding_type: nope

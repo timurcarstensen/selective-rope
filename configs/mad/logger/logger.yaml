@@ -1,0 +1,5 @@
+wandb_resume: allow
+wandb_project: MAD
+wandb_entity: null
+wandb_group: null
+wandb_run_name: null

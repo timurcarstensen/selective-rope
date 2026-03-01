@@ -1,0 +1,12 @@
+vocab_size: 26
+n_gram: 0
+length_answer: 0
+train_task: copy
+eval_task: copy
+sequence_length: 420
+min_length: 2
+max_length: 64
+min_eval_len: 2
+max_eval_len: 512
+sampler_type: sequential
+sampler_seed: null

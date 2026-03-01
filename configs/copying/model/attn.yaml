@@ -1,0 +1,21 @@
+defaults:
+    - position_embedding: rope
+
+attention_bias: false
+bos_token_id: 1
+eos_token_id: 2
+fuse_cross_entropy: false
+fuse_norm: true
+hidden_act: swish
+hidden_size: 512
+hidden_ratio: 4
+initializer_range: 0.02
+max_position_embeddings: 2048
+model_type: transformer
+num_heads: 16
+num_hidden_layers: 4
+norm_eps: 1e-06
+tie_word_embeddings: false
+use_cache: true
+vocab_size: 30
+qk_norm: false

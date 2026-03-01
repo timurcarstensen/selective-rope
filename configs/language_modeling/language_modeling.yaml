@@ -1,0 +1,41 @@
+defaults:
+    - _self_
+    - logger: logger
+    - trainer: trainer
+    - model: gla
+    - cluster: capella
+    - override hydra/job_logging: disabled
+
+hydra:
+    run:
+        dir: ${hydra.runtime.cwd}/logs/language_modeling/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    mode: MULTIRUN
+    sweep:
+        dir: ${hydra.runtime.cwd}/logs/language_modeling/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    sweeper:
+        params:
+            logger.wandb_group: gla
+            logger.wandb_project: null
+            trainer.logging_steps: 32
+            model/position_embedding: selective_rope
+            model.hidden_size: 1024
+            model.num_heads: 4
+            # model.position_embedding.phi_proj_rank: 8
+            model.position_embedding.phi_parametrization: full-rank
+            model.position_embedding.skip_conv: false
+            model.position_embedding.use_gate: true
+            model.position_embedding.gate_parametrization: standard
+            # model.position_embedding.gate_low_rank_dim: 16
+            model.position_embedding.use_bias: false
+            model.position_embedding.conv_act: silu
+            # trainer.learning_rate: 5e-4, 4e-4, 3e-4, 2e-4, 1e-4, 16e-3, 8e-3, 4e-3, 2e-3, 1e-3
+            # trainer.learning_rate: 5e-4, 2e-3, 1e-3
+            # trainer.learning_rate: 16e-3, 8e-3, 4e-3
+            trainer.learning_rate: 5e-4
+            # trainer.steps: 19074
+            # trainer.steps: 12398
+            trainer.grad_accumulation_steps: 1
+            trainer.micro_batch_size: 4
+            trainer.torch_compile: true
+            cluster.nodes: 1
+            cluster.gpus_per_node: 1

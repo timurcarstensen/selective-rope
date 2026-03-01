@@ -1,0 +1,111 @@
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "selective-rope"
+version = "0.1.0"
+description = "Implementation of 'Selective Rotary Position Embeddings'"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    { name = "Timur Carstensen" },
+    { name = "Sajad Movahedi" },
+    { name = "Arshia Afzal" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "flash-attn",
+    "torch<2.9",
+    "transformers",
+    "accelerate",
+    "wandb",
+    "datasets<4.0.0",
+    "hydra-core",
+    "pre-commit",
+    "numpy",
+    "einops",
+    "tqdm",
+    "pydantic",
+    "ray",
+    "polars>=1.32.3",
+    "tokenizers>=0.20.3",
+    "causal-conv1d",
+    "flash-linear-attention",
+    "zoology",
+    "mad",
+    "state-tracking",
+    "copying",
+    "lm_eval<0.4.9",
+    "scienceplots",
+    "jupyter"
+]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = ["torch<2.9"]
+causal-conv1d = ["torch<2.9"]
+zoology = ["torch<2.9"]
+
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_SKIP_CUDA_BUILD = "TRUE" }
+causal-conv1d = { CAUSAL_CONV1D_SKIP_CUDA_BUILD = "TRUE" }
+
+[tool.uv.sources]
+flash-linear-attention = { git = "https://github.com/fla-org/flash-linear-attention", rev = "64248fccadbfc831ed1ad95f0423713bab87068d" }
+zoology = { path = "./synthetic_tasks/zoology", editable = true }
+mad = { path = "./synthetic_tasks/mad", editable = true }
+state-tracking = { path = "./synthetic_tasks/state_tracking", editable = true }
+copying = { path = "./synthetic_tasks/copying", editable = true }
+
+[tool.uv.build-backend]
+module-root = "src"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP"]
+ignore = []
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-third-party = ["wandb"]

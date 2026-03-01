@@ -1,0 +1,68 @@
+# pdfs and images
+**/*.pdf
+**/*.png
+**/*.jpeg
+**/*.jpg
+**/*.cache
+
+
+# Ignore slurm logs
+!**/deepspeed.json
+**/slurm_logs/
+**/training/
+**/logs
+**/outputs
+**/tmp
+/data/
+
+# ignore build files
+**/build/
+**/dist/
+**/*.egg-info/
+
+# Ignore slurm scripts
+**/slurm_scripts/
+
+# Ignore attention files
+**/attention_rope.json
+**/attention_selective_rope.json
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+**/*.egg-info/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore model checkpoints
+checkpoints/
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+.env/
+
+# Ignore log files
+*.log
+
+# Ignore data files
+*.csv
+*.json
+
+# Ignore any other temporary or sensitive files
+*.tmp
+*.bak
+*.swp
+
+# Ignore specific system files
+.DS_Store
+Thumbs.db
+
+# Ignore Weights & Biases (wandb) files
+wandb/
+*.wandb
+
+# IDE files
+.cursor/

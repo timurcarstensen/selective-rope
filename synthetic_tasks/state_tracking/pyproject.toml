@@ -1,0 +1,18 @@
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "state-tracking"
+version = "0.1.0"
+description = "State tracking synthetic task for Selective RoPE"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "abstract-algebra @ git+https://github.com/jopetty/abstract_algebra",
+    "fire",
+    "ordered-set>=4.1.0",
+]
+
+[tool.uv.build-backend]
+module-root = "src"

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["uv_build>=0.10.2,<0.11.0"]
+build-backend = "uv_build"
+
+[project]
+name = "mad"
+version = "0.1.0"
+description = "Adapted from MAD-Lab (https://github.com/athms/mad-lab) — Mechanistic Architecture Design for synthetic sequence modeling tasks"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "lightning"
+]
+
+[tool.uv.build-backend]
+module-root = "src"

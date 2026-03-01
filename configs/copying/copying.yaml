@@ -1,0 +1,33 @@
+# Base config for copying experiment
+
+defaults:
+    - _self_
+    - logger: logger
+    - trainer: trainer
+    - model: gla
+    - data: data
+    - cluster: capella
+    - override hydra/job_logging: disabled
+
+hydra:
+    run:
+        dir: ${hydra.runtime.cwd}/logs/copying/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    mode: MULTIRUN
+    sweep:
+        dir: ${hydra.runtime.cwd}/logs/copying/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    sweeper:
+        params:
+            logger.wandb_group: copying
+            model.position_embedding.type: selective_rope # choices: [nope, rope, selective_rope]
+            model.position_embedding.skip_conv: true # choices: [true, false]
+            model.position_embedding.temp_type: rfa # choices: [rope, rfa]
+            model.position_embedding.temp_theta: 0.9999 # > 1.0 for rope, (0, 1) for rfa
+            model.position_embedding.temp_max: 0.25 # max value for the temperature
+            model.position_embedding.temp_grad: false
+
+            model.position_embedding.use_gate: true, false
+            model.position_embedding.use_bias: true, false
+
+            trainer.lr: 2e-3 # grid: 5e-3, 1e-3, 5e-4, 1e-4, 5e-5, 1e-5
+            trainer.seed: 0, 1, 2
+            trainer.steps_budget: 5000

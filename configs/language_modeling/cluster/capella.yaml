@@ -1,0 +1,15 @@
+filename: scripts/capella.sh
+data_home: null
+nodes: 1
+gpus_per_node: 4
+
+# SBATCH parameters
+partition: capella
+job_name: gla
+mem_per_gpu: 128G
+cpus_per_gpu: 8
+time_limit: "06-24:00:00"
+exclude: c4,c154,c17
+mail_user: null
+mail_type: END,FAIL,TIME_LIMIT_80
+licenses: cat
